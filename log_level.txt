@@ -1,0 +1,6 @@
+error /^(.*ERROR.*)$/
+warning /^(.*WARN.*|\[WARN].*)$/
+info /^(.*INFO.*|\[INFO].*)$/
+ok /^\(\/\) (.*)$/
+notok /^\(x\) (.*)$/
+fixed /^\(!\) (.*)$/
