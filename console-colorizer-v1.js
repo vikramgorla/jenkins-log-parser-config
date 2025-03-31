@@ -16,14 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
   function colorizeConsole() {
     const consoleLines = document.querySelectorAll('.console-output span');
     consoleLines.forEach(line => {
-      const text = line.textContent;
-      if (text.includes('ERROR')) {
-        line.style.color = '#FF0000';
+      const text = line.textContent || '';
+      
+      // Check for prefixes - either at the start or after a timestamp
+      if (text.match(/^\s*(INFO:|INFO\s|^\[.*?\]\s*INFO:)/i)) {
+        line.style.color = '#008000'; // Green for INFO
+      } 
+      else if (text.match(/^\s*(ERROR:|ERROR\s|^\[.*?\]\s*ERROR:)/i)) {
+        line.style.color = '#FF0000'; // Red for ERROR
         line.style.fontWeight = 'bold';
-      } else if (text.includes('WARN')) {
-        line.style.color = '#FFA500';
-      } else if (text.includes('INFO')) {
-        line.style.color = '#008000';
+      }
+      else if (text.match(/^\s*(WARN:|WARNING:|WARN\s|WARNING\s|^\[.*?\]\s*WARN:)/i)) {
+        line.style.color = '#FFA500'; // Orange for WARN/WARNING
       }
     });
   }
